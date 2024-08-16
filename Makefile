@@ -58,7 +58,7 @@ submodules:
 
 # We must ensure up is installed in tool cache prior to build as including the k8s_tools machinery prior to the xpkg
 # machinery sets UP to point to tool cache.
-build.init: $(UP)
+build.init: $(UP) kcl
 
 # ====================================================================================
 # End to End Testing
