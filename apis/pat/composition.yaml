@@ -65,6 +65,9 @@ spec:
               - type: FromCompositeFieldPath
                 fromFieldPath: spec.parameters.serviceAccount.namespace
                 toFieldPath: spec.forProvider.namespace
+              - type: ToCompositeFieldPath
+                fromFieldPath: status.atProvider.clusterName
+                toFieldPath: status.podIdentity.clusterName
 
           - name: iamRole
             base:
