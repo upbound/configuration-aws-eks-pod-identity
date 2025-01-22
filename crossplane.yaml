@@ -12,4 +12,4 @@ spec:
   dependsOn:
     - configuration: xpkg.upbound.io/upbound/configuration-aws-eks
       # renovate: datasource=github-releases depName=upbound/configuration-aws-eks
-      version: "v0.13.1"
+      version: "v0.15.0"
