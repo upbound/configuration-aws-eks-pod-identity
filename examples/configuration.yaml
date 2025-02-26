@@ -3,4 +3,4 @@ kind: Configuration
 metadata:
   name: configuration-aws-eks-pod-identity
 spec:
-  package: xpkg.upbound.io/upbound/configuration-aws-eks-pod-identity:v0.1.0
+  package: xpkg.upbound.io/upbound/configuration-aws-eks-pod-identity:v0.4.0
