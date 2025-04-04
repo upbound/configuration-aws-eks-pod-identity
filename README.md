@@ -1,31 +1,24 @@
 # AWS EKS Pod Identity Configuration
 
+This repository contains an Upbound project, tailored for users establishing their initial control plane with [Upbound](https://cloud.upbound.io). This configuration deploys fully managed AWS EKS Pod Identity resources.
+
+## Overview
+
+The core components of a custom API in [Upbound Project](https://docs.upbound.io/learn/control-plane-project/) include:
+
+- **CompositeResourceDefinition (XRD):** Defines the API's structure.
+- **Composition(s):** Configures the Functions Pipeline
+- **Embedded Function(s):** Encapsulates the Composition logic and implementation within a self-contained, reusable unit
+
+In this specific configuration, the API contains:
+
+- **an [AWS EKS Pod Identity](/apis/definition.yaml) custom resource type.**
+- **Composition:** Configured in [/apis/composition.yaml](/apis/composition.yaml)
+- **Embedded Function:** The Composition logic is encapsulated within [embedded function](/functions/eks-pod-identity/main.k)
+
+## How It Works
+
 At a high level, EKS Pod Identity allows you to use the AWS API to define permissions that specific Kubernetes service accounts should have in AWS:
-
-## Configuration
-This configuration is for implementing AWS EKS Pod Identity, which involves creating the IAM Role and configuring the EKS PodIdentityAssociation.
-
-```bash
-apiVersion: pkg.crossplane.io/v1
-kind: Configuration
-metadata:
-  name: configuration-aws-eks-pod-identity
-spec:
-  package: xpkg.upbound.io/upbound/configuration-aws-eks-pod-identity:v0.1.0
-```
-
-## The How
-
-The following step is automatically completed when you install your EKS Cluster using our predefined configuration for AWS EKS - which is installed as dependency per default:
-
-```bash
-apiVersion: pkg.crossplane.io/v1
-kind: Configuration
-metadata:
-  name: configuration-aws-eks
-spec:
-  package: xpkg.upbound.io/upbound/configuration-aws-eks:v0.12.0
-```
 
 Setting up Pod Identity starts by installing an add-on:
 https://github.com/aws/eks-pod-identity-agent
@@ -45,7 +38,6 @@ eks-pod-identity-agent   2         2         2       2            2           <n
 ```
 
 ![pod-identity](images/s3-access-podidentity.png)
-https://github.com/awslabs/crossplane-on-eks
 
 ### EKS Pod Identity at a glance
 
@@ -72,10 +64,9 @@ Here, YourPodRole has the following trust policy:
 }
 ```
 
-Once you’ve run the commands to configure Pod Identity, any pod that runs under the pod-service-account service account magically has access to AWS resources, through temporary Security Token Service (STS) credentials:
+Once you've run the commands to configure Pod Identity, any pod that runs under the pod-service-account service account magically has access to AWS resources, through temporary Security Token Service (STS) credentials:
 
 ```bash
-
 $ kubectl apply -f - <<EOF
 apiVersion: v1
 kind: Pod
@@ -95,7 +86,6 @@ $ kubectl exec pod/pod-with-aws-access -- aws sts get-caller-identity
     "Account": "012345678901",
     "Arn": "arn:aws:sts::012345678901:assumed-role/YourPodRole/eks-cluster-pod-xxx"
 }
-
 ```
 
 For a given EKS cluster, you can easily see which pods have access to AWS resources using eks:ListPodIdentityAssociations:
@@ -133,3 +123,26 @@ aws eks describe-pod-identity-association \
     }
 }
 ```
+
+## Testing
+
+The configuration can be tested using:
+
+- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml` to render the composition
+- `up test run tests/*` to run composition tests in `tests/test-eks-pod-identity/`
+- `up test run tests/* --e2e` to run end-to-end tests in `tests/e2etest-eks-pod-identity/`
+
+## Deployment
+
+- Execute `up project run`
+- Alternatively, install the Configuration from the [Upbound Marketplace](https://marketplace.upbound.io/configurations/upbound/configuration-aws-eks-pod-identity)
+- Check [examples](/examples/) for example XR(Composite Resource)
+
+## Next steps
+
+This repository serves as a foundational step. To enhance the configuration, consider:
+
+1. create new API definitions in this same repo
+2. editing the existing API definition to your needs
+
+To learn more about how to build APIs for your managed control planes in Upbound, read the guide on [Upbound's docs](https://docs.upbound.io/).

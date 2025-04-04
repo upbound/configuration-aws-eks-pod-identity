@@ -1,0 +1,18 @@
+apiVersion: meta.dev.upbound.io/v1alpha1
+kind: Project
+metadata:
+  name: configuration-aws-eks-pod-identity
+spec:
+  dependsOn:
+  - configuration: xpkg.upbound.io/upbound/configuration-aws-eks
+    # renovate: datasource=github-releases depName=upbound/configuration-aws-eks
+    version: "v0.0.0-1743772301" # @TODO siwtch after release and before merge
+  - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+    version: '>=v0.0.0'
+  license: Apache-2.0
+  maintainer: Upbound <support@upbound.io>
+  description: This configuration manages pod identities on eks clusters
+  readme: |
+    This configuration manages pod identities on eks clusters
+  repository: xpkg.upbound.io/upbound/configuration-aws-eks-pod-identity
+  source: github.com/upbound/configuration-aws-eks-pod-identity
