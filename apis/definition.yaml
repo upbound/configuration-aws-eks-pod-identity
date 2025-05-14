@@ -6,7 +6,7 @@ metadata:
     provider: aws
 spec:
   defaultCompositionRef:
-    name: pat.xpodidentities.aws.platform.upbound.io
+    name: xpodidentities.aws.platform.upbound.io
   group: aws.platform.upbound.io
   names:
     kind: XPodIdentity
