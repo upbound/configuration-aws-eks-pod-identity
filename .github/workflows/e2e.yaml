@@ -32,6 +32,8 @@ jobs:
         with:
           api-token: ${{ env.UP_API_TOKEN }}
           organization: ${{ env.UP_ORG }}
+          channel: main
+          version: v0.39.0-315.geacb58a0
 
       # doesn't work with plain token when pushing otherwise
       - name: Login to xpkg with robot
