@@ -1,15 +1,12 @@
 apiVersion: aws.platform.upbound.io/v1alpha1
 kind: XEKS
 metadata:
-  name: configuration-aws-eks-pod-identity-kcl
+  name: configuration-aws-eks-pod-identity
 spec:
-  compositionSelector:
-    matchLabels:
-      function: kcl
   parameters:
-    id: configuration-aws-eks-pod-identity-kcl
+    id: configuration-aws-eks-pod-identity
     region: us-west-2
-    version: "1.27"
+    version: "1.33"
     nodes:
       count: 1
       instanceType: t3.small

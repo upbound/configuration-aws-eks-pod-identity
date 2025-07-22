@@ -87,4 +87,15 @@ _items += [
     }
 ]
 
+observedClusterName = _ocds.podIdentityAssociation?.Resource?.status?.atProvider?.clusterName
+
+_dxr.status = {
+    podIdentity = {
+        clusername = observedClusterName
+    }
+}
+
+_items += [_dxr]
+
 items = _items
+
