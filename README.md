@@ -129,6 +129,8 @@ aws eks describe-pod-identity-association \
 The configuration can be tested using:
 
 - `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml` to render the composition
+- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml -o examples/observed-podidentityassociation.yaml` to render composition with observed PodIdentityAssociation and test XR status propagation
+- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml` to render the composition
 - `up test run tests/*` to run composition tests in `tests/test-eks-pod-identity/`
 - `up test run tests/* --e2e` to run end-to-end tests in `tests/e2etest-eks-pod-identity/`
 
