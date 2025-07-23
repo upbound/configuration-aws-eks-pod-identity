@@ -91,7 +91,7 @@ observedClusterName = _ocds.podIdentityAssociation?.Resource?.status?.atProvider
 
 _dxr.status = {
     podIdentity = {
-        clusername = observedClusterName
+        clusterName = observedClusterName
     }
 }
 
