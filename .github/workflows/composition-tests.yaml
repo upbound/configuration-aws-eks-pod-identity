@@ -18,8 +18,8 @@ jobs:
         uses: upbound/action-up@53fe6395637d884c80d2bbc8c2d75d0ece776ced # v1
         with:
           skip-login: true
-          channel: main
-          version: v0.39.0-315.geacb58a0
+          channel: alpha
+          version: v0.40.0-0.rc.4
 
       - name: Build project
         run: up project build
