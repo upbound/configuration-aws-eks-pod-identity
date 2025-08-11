@@ -45,6 +45,9 @@ _items = [
                         }
                     }
                     status = {
+                        podIdentity = {
+                            clusterName = "observed-dynamic-cluster-name" # see observedResources setup below
+                        }
                         conditions = [
                             {
                                 lastTransitionTime = "2024-01-01T00:00:00Z"
@@ -143,6 +146,26 @@ _items = [
             xrPath: "examples/pod-identity-xr.yaml"
             xrdPath: "apis/definition.yaml"
             timeoutSeconds: 60
+            observedResources= [
+                eksv1beta1.PodIdentityAssociation{
+                    metadata.annotations = {
+                        "crossplane.io/composition-resource-name" = "podIdentityAssociation"
+                    }
+                    spec = {
+                        forProvider = {
+                            clusterNameSelector = {
+                                matchControllerRef: True
+                            }
+                            region = "us-west-2"
+                        }
+                    }
+                    status = {
+                        atProvider = {
+                            clusterName: "observed-dynamic-cluster-name"
+                        }
+                    }
+                }
+            ]
             validate: False
         }
     }
