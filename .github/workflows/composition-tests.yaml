@@ -19,7 +19,7 @@ jobs:
         with:
           skip-login: true
           channel: alpha
-          version: v0.40.0-0.rc.3
+          version: v0.40.0-0.rc.4
 
       - name: Build project
         run: up project build
