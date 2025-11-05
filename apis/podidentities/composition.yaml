@@ -1,11 +1,11 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xpodidentities.aws.platform.upbound.io
+  name: podidentities.aws.platform.upbound.io
 spec:
   compositeTypeRef:
     apiVersion: aws.platform.upbound.io/v1alpha1
-    kind: XPodIdentity
+    kind: PodIdentity
   mode: Pipeline
   pipeline:
   - functionRef:

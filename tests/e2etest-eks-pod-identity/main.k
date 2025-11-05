@@ -1,4 +1,4 @@
-import models.io.upbound.aws.v1beta1 as awsv1beta1
+import models.io.upbound.awsm.v1beta1 as awsv1beta1
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 import models.io.upbound.platform.aws.v1alpha1 as platformawsv1alpha1
 
@@ -9,9 +9,7 @@ _items = [
             crossplane.autoUpgrade.channel: "Rapid"
             defaultConditions: ["Ready"]
             manifests: [
-                platformawsv1alpha1.XPodIdentity {
-                    apiVersion = "aws.platform.upbound.io/v1alpha1"
-                    kind = "XPodIdentity"
+                platformawsv1alpha1.PodIdentity {
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
                     }
@@ -52,7 +50,8 @@ _items = [
                         }
                     }
                 }
-                platformawsv1alpha1.XEKS{
+
+                platformawsv1alpha1.EKS{
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
                     }
@@ -66,15 +65,10 @@ _items = [
                                 instanceType = "t3.small"
                             }
                         }
-                        writeConnectionSecretToRef = {
-                            name = "configuration-aws-eks-pod-identity-kubeconfig"
-                            namespace = "upbound-system"
-                        }
                     }
                 }
-                {
-                    apiVersion = "aws.platform.upbound.io/v1alpha1"
-                    kind = "XNetwork"
+                
+                platformawsv1alpha1.Network{
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
                     }

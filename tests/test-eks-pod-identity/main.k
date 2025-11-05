@@ -1,6 +1,5 @@
-
-import models.io.upbound.aws.eks.v1beta1 as eksv1beta1
-import models.io.upbound.aws.iam.v1beta1 as iamv1beta1
+import models.io.upbound.awsm.eks.v1beta1 as eksv1beta1
+import models.io.upbound.awsm.iam.v1beta1 as iamv1beta1
 import models.io.upbound.dev.meta.v1alpha1 as metav1alpha1
 import models.io.upbound.platform.aws.v1alpha1 as platformawsv1alpha1
 
@@ -9,7 +8,7 @@ _items = [
         metadata.name: ""
         spec= {
             assertResources: [
-                platformawsv1alpha1.XPodIdentity{
+                platformawsv1alpha1.PodIdentity{
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
                     }
@@ -73,14 +72,14 @@ _items = [
                                 apiVersion = "aws.platform.upbound.io/v1alpha1"
                                 blockOwnerDeletion = True
                                 controller = True
-                                kind = "XPodIdentity"
+                                kind = "PodIdentity"
                                 name = "configuration-aws-eks-pod-identity"
                                 uid = ""
                             }
                         ]
                     }
                     spec = {
-                        deletionPolicy = "Delete"
+                        managementPolicies = ["*"]
                         forProvider = {
                             assumeRolePolicy = r"""{
     "Version":"2012-10-17",
@@ -115,14 +114,14 @@ _items = [
                                 apiVersion = "aws.platform.upbound.io/v1alpha1"
                                 blockOwnerDeletion = True
                                 controller = True
-                                kind = "XPodIdentity"
+                                kind = "PodIdentity"
                                 name = "configuration-aws-eks-pod-identity"
                                 uid = ""
                             }
                         ]
                     }
                     spec = {
-                        deletionPolicy = "Delete"
+                        managementPolicies = ["*"]
                         forProvider = {
                             clusterNameSelector = {
                                 matchLabels = {
@@ -137,14 +136,15 @@ _items = [
                             serviceAccount = "my-controller"
                         }
                         providerConfigRef = {
+                            kind = "ProviderConfig"
                             name = "default"
                         }
                     }
                 }
             ]
-            compositionPath: "apis/composition.yaml"
-            xrPath: "examples/pod-identity-xr.yaml"
-            xrdPath: "apis/definition.yaml"
+            compositionPath: "apis/podidentities/composition.yaml"
+            xrPath: "examples/podidentity/pod-identity-xr.yaml"
+            xrdPath: "apis/podidentities/definition.yaml"
             timeoutSeconds: 60
             observedResources= [
                 eksv1beta1.PodIdentityAssociation{

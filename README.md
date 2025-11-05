@@ -12,8 +12,8 @@ The core components of a custom API in [Upbound Project](https://docs.upbound.io
 
 In this specific configuration, the API contains:
 
-- **an [AWS EKS Pod Identity](/apis/definition.yaml) custom resource type.**
-- **Composition:** Configured in [/apis/composition.yaml](/apis/composition.yaml)
+- **an [AWS EKS Pod Identity](/apis/podidentities/definition.yaml) custom resource type.**
+- **Composition:** Configured in [/apis/podidentities/composition.yaml](/apis/podidentities/composition.yaml)
 - **Embedded Function:** The Composition logic is encapsulated within [embedded function](/functions/eks-pod-identity/main.k)
 
 ## How It Works
@@ -128,9 +128,9 @@ aws eks describe-pod-identity-association \
 
 The configuration can be tested using:
 
-- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml` to render the composition
-- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml -o examples/observed-podidentityassociation.yaml` to render composition with observed PodIdentityAssociation and test XR status propagation
-- `up composition render --xrd=apis/definition.yaml apis/composition.yaml examples/pod-identity-xr.yaml` to render the composition
+- `up composition render --xrd=apis/podidentities/definition.yaml apis/podidentities/composition.yaml examples/podidentity/pod-identity-xr.yaml` to render the composition
+- `up composition render --xrd=apis/podidentities/definition.yaml apis/podidentities/composition.yaml examples/podidentity/pod-identity-xr.yaml -o examples/observed-podidentityassociation.yaml` to render composition with observed PodIdentityAssociation and test XR status propagation
+- `up composition render --xrd=apis/podidentities/definition.yaml apis/podidentities/composition.yaml examples/podidentity/pod-identity-xr.yaml` to render the composition
 - `up test run tests/*` to run composition tests in `tests/test-eks-pod-identity/`
 - `up test run tests/* --e2e` to run end-to-end tests in `tests/e2etest-eks-pod-identity/`
 
