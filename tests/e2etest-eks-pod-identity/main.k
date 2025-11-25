@@ -6,7 +6,8 @@ _items = [
     metav1alpha1.E2ETest {
         metadata.name: "pod-identity"
         spec = {
-            crossplane.autoUpgrade.channel: "Rapid"
+            crossplane.autoUpgrade.channel: "None"
+            crossplane.version = "2.0.2-up.5"
             defaultConditions: ["Ready"]
             manifests: [
                 platformawsv1alpha1.PodIdentity {
@@ -73,6 +74,7 @@ _items = [
                 platformawsv1alpha1.Network{
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
+                        namespace = "default"
                     }
                     spec = {
                         parameters = {
