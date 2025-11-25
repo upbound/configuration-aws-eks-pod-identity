@@ -12,6 +12,7 @@ _items = [
                 platformawsv1alpha1.PodIdentity {
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
+                        namespace = "default"
                     }
                     spec = {
                         parameters = {
@@ -54,6 +55,7 @@ _items = [
                 platformawsv1alpha1.EKS{
                     metadata = {
                         name = "configuration-aws-eks-pod-identity"
+                        namespace = "default"
                     }
                     spec = {
                         parameters = {
@@ -84,7 +86,10 @@ _items = [
             extraResources: [
                 # Define the provider configuration
                 awsv1beta1.ProviderConfig{
-                    metadata.name = "default"
+                    metadata = {
+                        name = "default"
+                        namespace = "default"
+                    }
                     spec = {
                         credentials = {
                             source = "Upbound"
