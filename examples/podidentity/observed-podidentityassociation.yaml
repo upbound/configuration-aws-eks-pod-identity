@@ -21,7 +21,7 @@ metadata:
   - apiVersion: aws.platform.upbound.io/v1alpha1
     blockOwnerDeletion: true
     controller: true
-    kind: XPodIdentity
+    kind: PodIdentity
     name: configuration-aws-eks-pod-identity
     uid: 82b8283a-15d4-47d9-ad08-d3e78984eeb5
   resourceVersion: "665157"
