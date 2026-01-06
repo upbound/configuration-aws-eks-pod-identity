@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -32,8 +32,6 @@ jobs:
         with:
           api-token: ${{ env.UP_API_TOKEN }}
           organization: ${{ env.UP_ORG }}
-          channel: alpha
-          version: v0.40.0-0.rc.4
 
       # doesn't work with plain token when pushing otherwise
       - name: Login to xpkg with robot
