@@ -7,7 +7,7 @@ _items = [
         metadata.name: "pod-identity"
         spec = {
             crossplane.autoUpgrade.channel: "None"
-            crossplane.version = "2.0.2-up.5"
+            crossplane.version = "2.1.4-up.2"
             defaultConditions: ["Ready"]
             manifests: [
                 platformawsv1alpha1.PodIdentity {
